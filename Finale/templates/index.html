@@ -85,7 +85,7 @@
                             <div class="banner_text_iner">
                                 <h1>Trình tạo thơ tiếng Việt</h1>
                                 <p>Nhập văn bản của bạn để tạo ra những bài thơ đẹp bằng tiếng Việt.</p>
-                                <a href="#" class="btn_1">Bắt đầu</a>
+                                <a id ="click_on_program" href="#" class="btn_1">Bắt đầu</a>
                             </div>
                         </div>
                     </div>
@@ -94,25 +94,39 @@
         </section>
         <!-- banner part end-->
 
-
-        <div class="container-core">
-            <h1 class="mt-5">Trình tạo thơ tiếng Việt</h1>
-            <form id="textForm" class="mt-10">
-                <div class="form-group ">
-                    <label for="textInput">Nhập văn bản của bạn:</label>
-                    <input type="text" class="form-control large-input" id="textInput" name="textInput" required>
+        <div id = "program">
+            <div  class="container-core" style="margin: 10%;">
+                <h1 class="mt-5">Trình tạo thơ tiếng Việt</h1>
+                <form id="textForm" class="mt-10">
+                    <div class="form-group ">
+                        <label for="textInput" style="color: white;">Nhập văn bản của bạn:</label>
+                        <input type="text" class="form-control large-input" id="textInput" name="textInput" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary large-button "  id="submitBtn" style="padding: 0.5% 1.5% 0.5% 1.5%;">Gửi</button>
+                    <button type="button" class="btn btn-secondary large-button" id="reloadBtn" style="display:none;">Tải lại</button>
+                </form>
+                <div>
+                    <h1 id="result" class="result-box mt-10" style="color: black; font-size: 1.5rem; text-align: center;"></h1>
                 </div>
-                <button type="submit" class="btn btn-primary large-button" id="submitBtn">Gửi</button>
-                <button type="button" class="btn btn-secondary large-button" id="reloadBtn" style="display:none;">Tải lại</button>
-            </form>
-            <div>
-                <h1 id="result" class="result-box mt-10" style="color: black; font-size: 1.5rem; text-align: center;"></h1>
             </div>
         </div>
 
         <script src="{{ url_for('static', filename='js/jquery-1.12.1.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         <script>
+            document.getElementById('click_on_program').addEventListener('click', function() {
+            const target = document.getElementById('program');
+            const targetRect = target.getBoundingClientRect();
+            const offset = window.innerHeight * 0.15; // 10% của chiều cao cửa sổ
+            const scrollTo = targetRect.top + window.scrollY - offset;
+
+            window.scrollTo({
+                top: scrollTo,
+                behavior: 'smooth'
+            });
+        });
+
+
             $(document).ready(function () {
                 $('#textForm').on('submit', function (e) {
                     e.preventDefault();

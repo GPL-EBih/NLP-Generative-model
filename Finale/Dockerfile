@@ -1,5 +1,5 @@
 # 1. Sử dụng hình ảnh cơ sở từ Python
-FROM python:3.11-slim
+FROM nlp-lstm:latest
 
 # 2. Thiết lập thư mục làm việc trong container
 WORKDIR /app
